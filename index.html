@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dein Geschenk aus der Zwergenbibliothek</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:       #2a1f14;
+    --bark:      #5c3d2e;
+    --gold:      #c9a55a;
+    --parchment: #f5efe4;
+    --cream:     #fdfaf5;
+    --mist:      #ede6d8;
+    --white:     #ffffff;
+  }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--bark);
+    color: var(--parchment);
+    text-align: center;
+    padding: 80px 24px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 120%, rgba(201,165,90,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.2;
+    max-width: 720px;
+    margin: 0 auto 20px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    max-width: 540px;
+    margin: 0 auto;
+    opacity: 0.85;
+  }
+
+  /* ornamental divider */
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.4rem;
+    letter-spacing: 0.4em;
+    margin: 40px 0;
+    opacity: 0.6;
+  }
+
+  /* ── SECTION ── */
+  section { padding: 64px 24px; }
+  .container { max-width: 780px; margin: 0 auto; }
+
+  /* ── INTRO ── */
+  .intro { background: var(--cream); }
+  .intro p {
+    font-size: 1.05rem;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* ── FREEBIES ── */
+  .freebies { background: var(--parchment); }
+  .freebies h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .freebie-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  @media (max-width: 560px) { .freebie-grid { grid-template-columns: 1fr; } }
+
+  .freebie-card {
+    background: var(--white);
+    border: 1px solid var(--mist);
+    border-radius: 4px;
+    padding: 36px 32px;
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+  .freebie-card:hover { box-shadow: 0 8px 32px rgba(92,61,46,0.10); }
+
+  .freebie-icon {
+    font-size: 2.2rem;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .freebie-type {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .freebie-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .freebie-card p {
+    font-size: 0.92rem;
+    color: #5a4a3a;
+    line-height: 1.65;
+  }
+  .freebie-label {
+    display: inline-block;
+    margin-top: 18px;
+    background: var(--mist);
+    color: var(--bark);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+
+  /* ── FORM ── */
+  .form-section { background: var(--bark); color: var(--parchment); }
+  .form-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .form-section .form-sub {
+    text-align: center;
+    opacity: 0.75;
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+  }
+  .opt-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .opt-form input[type="text"],
+  .opt-form input[type="email"] {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(253,250,245,0.3);
+    color: var(--parchment);
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    padding: 14px 18px;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .opt-form input::placeholder { color: rgba(245,239,228,0.5); }
+  .opt-form input:focus {
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.15);
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    font-family: 'Lato', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    padding: 16px 24px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { background: #d9b56a; transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(0); }
+  .form-privacy {
+    text-align: center;
+    font-size: 0.78rem;
+    opacity: 0.55;
+    margin-top: 8px;
+  }
+
+  /* ── ABOUT ── */
+  .about { background: var(--cream); }
+  .about .container { display: flex; gap: 48px; align-items: center; }
+  @media (max-width: 640px) { .about .container { flex-direction: column; text-align: center; } }
+  .about-badge {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    background: var(--bark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.6rem;
+  }
+  .about h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+  .about p { font-size: 0.97rem; color: #4a3828; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(245,239,228,0.5);
+    text-align: center;
+    padding: 28px 24px;
+    font-size: 0.8rem;
+  }
+  footer a { color: rgba(245,239,228,0.55); text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+  footer .footer-links { margin-bottom: 8px; }
+  footer .footer-links a + a { margin-left: 20px; }
+
+  /* ── SUCCESS ── */
+  .success-msg {
+    display: none;
+    background: rgba(201,165,90,0.15);
+    border: 1px solid var(--gold);
+    border-radius: 3px;
+    padding: 28px 28px 22px;
+    text-align: center;
+    color: var(--parchment);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .success-msg .success-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+    color: var(--gold);
+  }
+  .success-msg .success-sub {
+    font-size: 0.92rem;
+    opacity: 0.8;
+    margin-bottom: 22px;
+  }
+  .success-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .success-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(201,165,90,0.4);
+    border-radius: 3px;
+    padding: 14px 18px;
+    text-decoration: none;
+    color: var(--parchment);
+    font-size: 0.92rem;
+    text-align: left;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .success-link:hover {
+    background: rgba(201,165,90,0.15);
+    border-color: var(--gold);
+  }
+  .success-link .icon { font-size: 1.3rem; flex-shrink: 0; }
+  .success-link .label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .success-note {
+    margin-top: 20px;
+    font-size: 0.78rem;
+    opacity: 0.6;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <p class="hero-eyebrow">Zwergenbibliothek &middot; Dein Geschenk</p>
+  <h1>Zwei kostenlose Geschenke<br><em>direkt in dein Postfach</em></h1>
+  <p class="hero-sub">Eine Hörprobe, die bewegt — und eine Leseprobe, die verzaubert. Trag dich ein und erhalte beide sofort.</p>
+</header>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="container">
+    <p>Die Zwergenbibliothek steht für Geschichten, die bewegen — mal nachdenklich, mal magisch, immer ehrlich. Als kleines Dankeschön bekommst du zwei Kostproben aus zwei völlig verschiedenen Welten: eine persönliche Reise für Erwachsene und ein winterliches Abenteuer für die ganze Familie.</p>
+  </div>
+</section>
+
+<!-- FREEBIES -->
+<section class="freebies">
+  <div class="container">
+    <h2>Was dich erwartet</h2>
+    <div class="freebie-grid">
+
+      <div class="freebie-card">
+        <span class="freebie-icon">🎧</span>
+        <p class="freebie-type">Freebie 1 &middot; MP3 Hörprobe</p>
+        <h3>Mein Weg in die Kreativität – Kapitel 1: Die ersten Schritte</h3>
+        <p>Eine persönliche Hörprobe, die mitten ins Herz trifft. Wie fängt man etwas Neues an — ohne Plan, ohne Sicherheit, aber mit diesem einen leisen Gedanken: Warum eigentlich nicht? Ehrlich, ruhig und echt.</p>
+        <span class="freebie-label">Sofort als MP3</span>
+      </div>
+
+      <div class="freebie-card">
+        <span class="freebie-icon">📖</span>
+        <p class="freebie-type">Freebie 2 &middot; PDF Leseprobe</p>
+        <h3>Lena und Max: Hüter der Weihnachtsmagie</h3>
+        <p>Ein winterliches Abenteuer für Kinder und Erwachsene. Schnee, Geheimnisse und ein mysteriöses Licht am Waldrand — die ersten Kapitel als kostenlose Leseprobe zum Reinschmökern.</p>
+        <span class="freebie-label">Sofort als PDF</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OPT-IN FORM -->
+<section class="form-section">
+  <div class="container">
+    <h2>Jetzt kostenlos herunterladen</h2>
+    <p class="form-sub">Einmal eintragen — beide Freebies landen direkt bei dir.</p>
+
+    <form class="opt-form" id="optForm">
+      <input type="text" name="name" placeholder="Dein Vorname" required autocomplete="given-name">
+      <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required autocomplete="email">
+      <button type="submit" class="btn-primary">Freebies jetzt anfordern →</button>
+      <p class="form-privacy">Kein Spam. Abmeldung jederzeit möglich. Datenschutz wird respektiert.</p>
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      <p class="success-title">✨ Danke, {name}!</p>
+      <p class="success-sub">Deine beiden Geschenke stehen bereit – klick einfach direkt hier drauf. Eine Bestätigung ist zusätzlich unterwegs in dein Postfach.</p>
+
+      <div class="success-links">
+        <a class="success-link" href="https://drive.google.com/file/d/18yfLkY4UrHJ4Bg9mid2SI-Gdbu2HIwnv/view?usp=sharing" target="_blank" rel="noopener">
+          <span class="icon">🎧</span>
+          <span>
+            <span class="label">MP3 Hörprobe</span>
+            Mein Weg in die Kreativität – Kapitel 1
+          </span>
+        </a>
+        <a class="success-link" href="https://drive.google.com/file/d/1Ob8AO37kouD5HdPFEWv6OsdjC-os0ymk/view?usp=sharing" target="_blank" rel="noopener">
+          <span class="icon">📖</span>
+          <span>
+            <span class="label">PDF Leseprobe</span>
+            Lena und Max: Hüter der Weihnachtsmagie
+          </span>
+        </a>
+      </div>
+
+      <p class="success-note">Tipp: Speichere dir diese Seite oder die E-Mail, falls du später nochmal darauf zugreifen willst.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="container">
+    <div class="about-badge">📚</div>
+    <div>
+      <h2>Die Zwergenbibliothek</h2>
+      <p>Modern. Vielseitig. Selbst geschrieben. — Hinter der Zwergenbibliothek steckt Nivora Graufeder, eine Autorin, die einfach angefangen hat. Mit einer Idee, einem Zwerg und der Überzeugung, dass Kreativität kein Alter kennt. Krimis, Kinderbücher, Ratgeber, Workbooks — alles mit Herz geschrieben und mit Ruhe entdeckt.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="#">Impressum</a>
+    <a href="#">Datenschutz</a>
+    <a href="https://zwergenbibliothek.wordpress.com">Zur Website</a>
+  </div>
+  <p>© 2026 Zwergenbibliothek &middot; Nivora Graufeder &middot; Ramona Junggebauer, Karl-Kippenhahn-Str. 17, 08058 Zwickau</p>
+</footer>
+
+<script>
+  document.getElementById('optForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Vorname aus dem Feld holen und in die Erfolgsmeldung einsetzen
+    var vorname = this.querySelector('input[name="name"]').value.trim();
+    var successMsg = document.getElementById('successMsg');
+    var titleEl = successMsg.querySelector('.success-title');
+    if (vorname) {
+      titleEl.textContent = '✨ Danke, ' + vorname + '!';
+    } else {
+      titleEl.textContent = '✨ Danke dir!';
+    }
+
+    // WICHTIG: Hier zusaetzlich die echte MailerLite-Formular-Action-URL einbinden,
+    // damit die E-Mail-Adresse tatsaechlich in deiner Liste landet.
+    // Diese Version zeigt die Downloads direkt an, sendet aber noch NICHT an MailerLite.
+
+    this.style.display = 'none';
+    successMsg.style.display = 'block';
+    successMsg.scrollIntoView({behavior: 'smooth', block: 'center'});
+  });
+</script>
+</body>
+</html>
