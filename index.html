@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dein Geschenk aus der Zwergenbibliothek</title>
+
+<!-- MailerLite Universal -->
+<script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2329335');
+</script>
+<!-- End MailerLite Universal -->
+
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -359,18 +370,15 @@
 <section class="form-section">
   <div class="container">
     <h2>Jetzt kostenlos herunterladen</h2>
-    <p class="form-sub">Einmal eintragen — beide Freebies landen direkt bei dir.</p>
+    <p class="form-sub">Einmal eintragen — dann verpasst du keine neuen Geschichten mehr.</p>
 
-    <form class="opt-form" id="optForm">
-      <input type="text" name="name" placeholder="Dein Vorname" required autocomplete="given-name">
-      <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required autocomplete="email">
-      <button type="submit" class="btn-primary">Freebies jetzt anfordern →</button>
-      <p class="form-privacy">Kein Spam. Abmeldung jederzeit möglich. Datenschutz wird respektiert.</p>
-    </form>
+    <div class="ml-embedded-wrap" style="max-width:480px;margin:0 auto;">
+      <div class="ml-embedded" data-form="f1xBuq"></div>
+    </div>
 
-    <div class="success-msg" id="successMsg">
-      <p class="success-title">✨ Danke, {name}!</p>
-      <p class="success-sub">Deine beiden Geschenke stehen bereit – klick einfach direkt hier drauf. Eine Bestätigung ist zusätzlich unterwegs in dein Postfach.</p>
+    <div class="success-msg" style="display:block; margin-top:32px;">
+      <p class="success-title">🎁 Deine beiden Geschenke</p>
+      <p class="success-sub">Hier kannst du direkt reinhören und reinlesen — ganz ohne Wartezeit.</p>
 
       <div class="success-links">
         <a class="success-link" href="https://drive.google.com/file/d/18yfLkY4UrHJ4Bg9mid2SI-Gdbu2HIwnv/view?usp=sharing" target="_blank" rel="noopener">
@@ -414,28 +422,6 @@
   <p>© 2026 Zwergenbibliothek &middot; Nivora Graufeder &middot; Ramona Junggebauer, Karl-Kippenhahn-Str. 17, 08058 Zwickau</p>
 </footer>
 
-<script>
-  document.getElementById('optForm').addEventListener('submit', function(e) {
-    e.preventDefault();
 
-    // Vorname aus dem Feld holen und in die Erfolgsmeldung einsetzen
-    var vorname = this.querySelector('input[name="name"]').value.trim();
-    var successMsg = document.getElementById('successMsg');
-    var titleEl = successMsg.querySelector('.success-title');
-    if (vorname) {
-      titleEl.textContent = '✨ Danke, ' + vorname + '!';
-    } else {
-      titleEl.textContent = '✨ Danke dir!';
-    }
-
-    // WICHTIG: Hier zusaetzlich die echte MailerLite-Formular-Action-URL einbinden,
-    // damit die E-Mail-Adresse tatsaechlich in deiner Liste landet.
-    // Diese Version zeigt die Downloads direkt an, sendet aber noch NICHT an MailerLite.
-
-    this.style.display = 'none';
-    successMsg.style.display = 'block';
-    successMsg.scrollIntoView({behavior: 'smooth', block: 'center'});
-  });
-</script>
 </body>
 </html>
