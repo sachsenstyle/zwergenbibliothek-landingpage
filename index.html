@@ -381,9 +381,11 @@
     <h2>Jetzt kostenlos herunterladen</h2>
     <p class="form-sub">Einmal eintragen — beide Freebies landen direkt bei dir.</p>
 
-    <form class="opt-form" id="optForm">
-      <input type="text" name="name" placeholder="Dein Vorname" required autocomplete="given-name">
-      <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required autocomplete="email">
+    <form class="opt-form" id="optForm" action="https://assets.mailerlite.com/jsonp/2329335/forms/192321600681412160/subscribe" method="post">
+      <input type="text" name="fields[name]" placeholder="Dein Vorname" required autocomplete="given-name">
+      <input type="email" name="fields[email]" placeholder="Deine E-Mail-Adresse" required autocomplete="email">
+      <input type="hidden" name="ml-submit" value="1">
+      <input type="hidden" name="anticsrf" value="true">
       <button type="submit" class="btn-primary">Freebies jetzt anfordern →</button>
       <p class="form-privacy">Kein Spam. Abmeldung jederzeit möglich. Datenschutz wird respektiert.</p>
     </form>
@@ -480,22 +482,25 @@
 <script>
   document.getElementById('optForm').addEventListener('submit', function(e) {
     e.preventDefault();
+    var form = this;
 
     // Vorname aus dem Feld holen und in die Erfolgsmeldung einsetzen
-    var vorname = this.querySelector('input[name="name"]').value.trim();
+    var vorname = form.querySelector('input[name="fields[name]"]').value.trim();
     var successMsg = document.getElementById('successMsg');
     var titleEl = successMsg.querySelector('.success-title');
-    if (vorname) {
-      titleEl.textContent = '✨ Danke, ' + vorname + '!';
-    } else {
-      titleEl.textContent = '✨ Danke dir!';
-    }
+    titleEl.textContent = vorname ? ('✨ Danke, ' + vorname + '!') : '✨ Danke dir!';
 
-    // WICHTIG: Hier zusaetzlich die echte MailerLite-Formular-Action-URL einbinden,
-    // damit die E-Mail-Adresse tatsaechlich in deiner Liste landet.
-    // Diese Version zeigt die Downloads direkt an, sendet aber noch NICHT an MailerLite.
+    // Daten wirklich an MailerLite schicken (im Hintergrund, ohne die Seite zu verlassen)
+    var formData = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    }).catch(function () {
+      // Anfrage wird trotzdem gesendet, Antwort kann bei no-cors nicht gelesen werden
+    });
 
-    this.style.display = 'none';
+    form.style.display = 'none';
     successMsg.style.display = 'block';
     successMsg.scrollIntoView({behavior: 'smooth', block: 'center'});
   });
